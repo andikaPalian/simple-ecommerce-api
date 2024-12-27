@@ -27,12 +27,30 @@ const orderSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ["pending", "paid", "delivered"],
+        enum: ["pending", "processing", "delivered", "shipped", "cancelled"],
         default: "pending",
     },
     paymentIntent: {
         type: String,
-    }
+    },
+    shippingAddress: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Address"
+    },
+    trackingNumber: {
+        type: String,
+    },
+    shippingCost: {
+        type: Number,
+    },
+    discount: [{
+        code: {
+            type: String,
+        },
+        amount: {
+            type: Number,
+        }
+    }],
 }, {
     timestamps: true,
 });

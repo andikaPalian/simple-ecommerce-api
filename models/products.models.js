@@ -17,8 +17,27 @@ const productSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    image: {
+    images: {
+        type: [String],
+    },
+    category: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Category",
+        required: true,
+    },
+    rating: {
+        type: Number,
+    },
+    review: {
         type: String,
+    },
+    date: {
+        type: Date,
+        default: Date.now,
+    },
+    averageRating: {
+        type: Number,
+        default: 0,
     }
 }, {
     timestamps: true,
